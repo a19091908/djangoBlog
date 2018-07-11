@@ -17,3 +17,67 @@ ul#menu {
 ul#menu li {
   display: inline-block;
 }
+
+/* Button */
+.btn {
+  display: inline-block;
+  color: black;
+  font-size: 0.8em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border: thin solid gray;
+  background: linear-gradient(#f7f7f7, #dedede);
+}
+
+/* Messages */
+.success, .error {
+  padding: 1em 0 1em 3em;
+}
+
+.success {
+  background-color: #ddffdd;
+  border: thin solid green;
+  text-align:center;
+  border-radius: 5px
+}
+
+.error {
+  background-color: #fbd9d8;
+  border: thin solid red;
+}
+
+/* Misc */
+/*
+.inlineBlock {
+  display: inline-block;
+}
+*/
+
+/* Table */
+.table {
+  margin: 0 auto;
+  width: 90%;
+  border-collapse: collapse;
+}
+
+.table th {
+  font-size: 1.1em;
+  padding: 10px 0 10px 10px;
+  text-align: left;
+  background-color: #468cb1;
+  border-bottom: 1px solid black
+}
+
+.table td {
+  color: #222222;
+  background-color: #e0e0e0;
+  padding: 12px 0 12px 10px;
+}
+
+.table-striped tr:nth-child(even) td {
+  background-color: #E1F9DC;
+}
+
+.table-hover tr:hover td {
+  background-color: #cdeaf0;
+}
