@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MainMain</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-</head>
-<body>
-{% include 'main/menu.html' %}
+{% extends 'main/base.html' %}
+{% block heading %}MainMain{% endblock %}
+{% block content %}
 <p>現在時間{{ now }}</p>
 <p>這是main頁面 歡迎{{ userName }}</p>
-
-
-</body>
-</html>
+{% endblock %}

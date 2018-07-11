@@ -1,17 +1,12 @@
-<!doctype html>
+{% extends 'main/base.html' %}
 {% load staticfiles %}
-<html>
-<head>
-    <title>部落格</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+{% block css %}
     <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
-</head>
-<body>
-    {% include 'main/menu.html' %}
-    <h1>歡迎來到我的部落格</h1>
-    {% include 'article/searchForm.html' %}
+{% endblock %}
+{% block heading %}
+搜尋
+{% endblock %}
+{% block content %}
     <br><br>
     <hr>
     {% if not articles %}
@@ -30,5 +25,4 @@
         {% endfor %}
     </table>
     {% endif %}
-</body>
-</html>
+{% endblock %}

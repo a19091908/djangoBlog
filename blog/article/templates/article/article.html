@@ -1,41 +1,33 @@
-<!DOCTYPE html>
+{% extends 'main/base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>article</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="{% static 'main/js/deleteConfirm.js' %}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
-</head>
-<body>
-    {% include 'main/menu.html' %}
-    <h1>我是部落格</h1>
-    {% include 'main/messages.html' %}
-    {% include 'article/searchForm.html' %}
-    <p><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
-    {% for items in itemList %}
-    {% for item in items %}
-    {% if forloop.first %}
-    <h2><a href="{% url 'article:articleRead' item.id %}">{{ item.title }}</a></h2>
-    <form class="inlineBlock" method="post" action="{% url 'article:articleDelete' item.id %}">
-        {% csrf_token %}
-        <input class="btn deleteConfirm" name="input_delete" class="btn" type="submit" value="刪除">
-    </form>
-    <p>發表時間：{{ item.pubDateTime|date:'Y-m-d H:i' }}</p>
-    <div class="articleContent">{{ item.content|linebreaks }}</div>
-    {% else %}
-    <div class="commentDiv">
-        <span class="comment">{{ item.content}}</span>
-        <br>
-        <span class="commentTime">{{ item.pubDateTime|date:'m月d日 H:i'}}</span>
-    </div>
-    {% endif %}
-    {% endfor %}
-    <hr>
-    {% endfor %}
-
-</body>
-</html>
+{% block script %}
+<script src="{% static 'main/js/deleteConfirm.js' %}"></script>
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+{% endblock %}
+{% block heading %}文章{% endblock %}
+{% block content %}
+{% include 'article/searchForm.html' %}
+<p class="inlineBlock"><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
+{% for items in itemList %}
+{% for item in items %}
+{% if forloop.first %}
+<h2><a href="{% url 'article:articleRead' item.id %}">{{ item.title }}</a></h2>
+<form class="inlineBlock" method="post" action="{% url 'article:articleDelete' item.id %}">
+    {% csrf_token %}
+    <input class="btn deleteConfirm" name="input_delete" class="btn" type="submit" value="刪除">
+</form>
+<p>發表時間：{{ item.pubDateTime|date:'Y-m-d H:i' }}</p>
+<div class="articleContent">{{ item.content|linebreaks }}</div>
+{% else %}
+<div class="commentDiv">
+    <span class="comment">{{ item.content}}</span>
+   <br>
+    <span class="commentTime">{{ item.pubDateTime|date:'m月d日 H:i'}}</span>
+</div>
+{% endif %}
+{% endfor %}
+<hr>
+{% endfor %}
+{% endblock %}
